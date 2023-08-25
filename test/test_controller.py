@@ -1,7 +1,7 @@
 from unittest import TestCase
 import unittest
 
-from src.controllers.quizzController import obterQuizz
+from src.controllers import obterQuizz
 
 
 class ControllerTest(TestCase):

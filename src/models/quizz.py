@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from models.answer import Answer
+from src.models.answer import Answer
 
 @dataclass
 class Quizz:
