@@ -5,7 +5,7 @@ API para gerar quizzes randômicos de vários assuntos
 `pip install flask`
 
 ## Rodar
-`python src/index.py`
+`python -m src.index`
 
 ## Testar
 `python -m unittest discover -s test`

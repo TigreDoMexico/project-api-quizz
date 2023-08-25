@@ -1,6 +1,6 @@
 from flask import Flask, jsonify, request
 
-from controllers import obterQuizz
+from src.controllers import obterQuizz
 
 app = Flask(__name__)
 

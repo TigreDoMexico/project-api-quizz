@@ -1,6 +1,6 @@
 from src.models import Answer, Quizz
 
-def obterQuizz(quantidade = 10, assunto = ''):
+def obterQuizz(quantidade = 10, assunto = 'diversos'):
     lista_quizz = []
 
     for _ in range(quantidade):
