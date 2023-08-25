@@ -1,4 +1,5 @@
-from flask import Flask, jsonify, request
+import json
+from flask import Flask, Response, request
 
 from controllers.quizzController import obterQuizz
 
@@ -10,7 +11,8 @@ def getQuizz():
     assunto = request.args.get('assunto')
 
     returno = obterQuizz(int(quantidade) if quantidade else 10, assunto)
-    return jsonify(returno.__dict__)
+
+    return Response(json.dumps({'quizzes': returno}),  mimetype='application/json')
 
 if __name__ == '__main__':
     app.run()
