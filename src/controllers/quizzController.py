@@ -1,10 +1,12 @@
 from src.services import QuizzService
 
 
-service = QuizzService()
-
-def obterQuizz(quantidade = None, assunto = None):
-    qnt = int(quantidade) if quantidade else 10
+class QuizzController:
+    def __init__(self, service = None):
+        self.Service = service if service else QuizzService()
+        
+    def ObterQuizzes(self, quantidade = None, assunto = None):
+        qnt = int(quantidade) if quantidade else 10
     
-    quizzes = service.obterQuizzes(qnt, assunto)
-    return [quiz.__dict__ for quiz in quizzes]
+        quizzes = self.Service.obterQuizzes(qnt, assunto)
+        return [quiz.__dict__ for quiz in quizzes]

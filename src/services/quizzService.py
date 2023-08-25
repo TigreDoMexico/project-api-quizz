@@ -2,8 +2,8 @@ from src.models import Quizz, Answer
 
 
 class QuizzService:
-    def __init__(self) -> None:
-        self.lista_quizzes = []
+    def __init__(self, quizzes = None) -> None:
+        self.lista_quizzes = quizzes if quizzes else []
         
     def obterQuizzes(self, quantidade = 10, assunto = 'diversos') -> list[Quizz]:
         elementos_com_assunto = [quizz for quizz in self.lista_quizzes if quizz.Assunto == assunto]
