@@ -1,14 +1,10 @@
-from src.models import Answer, Quizz
+from src.services import QuizzService
 
-def obterQuizz(quantidade = 10, assunto = 'diversos'):
-    lista_quizz = []
 
-    for _ in range(quantidade):
-        answer1 = Answer('Resposta A', True)
-        answer2 = Answer('Resposta B', False)
-        answer3 = Answer('Resposta C', False)
+service = QuizzService()
+
+def obterQuizz(quantidade = None, assunto = None):
+    qnt = int(quantidade) if quantidade else 10
     
-        quizz = Quizz(assunto, [answer1, answer2, answer3])
-        lista_quizz.append(quizz)
-    
-    return lista_quizz
+    quizzes = service.obterQuizzes(qnt, assunto)
+    return [quiz.__dict__ for quiz in quizzes]
