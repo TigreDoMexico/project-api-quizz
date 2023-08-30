@@ -10,3 +10,8 @@ class QuizzController:
     
         quizzes = self.Service.obterQuizzes(qnt, assunto)
         return [quiz.__dict__ for quiz in quizzes]
+    
+    def CriarQuizzes(self, quizz):
+        print("TODO")
+        #quizzes = self.Service.salvarQuizz(qnt, assunto)
+        #return [quiz.__dict__ for quiz in quizzes]

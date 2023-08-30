@@ -2,7 +2,7 @@
 API para gerar quizzes randômicos de vários assuntos
 
 ## Dependências
-`pip install flask`
+`pip install flask marshmallow`
 
 ## Rodar
 `python -m src.index`
