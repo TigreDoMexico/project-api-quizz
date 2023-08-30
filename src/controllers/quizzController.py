@@ -11,7 +11,16 @@ class QuizzController:
         quizzes = self.Service.obterQuizzes(qnt, assunto)
         return [quiz.__dict__ for quiz in quizzes]
     
-    def CriarQuizzes(self, quizz):
-        print("TODO")
-        #quizzes = self.Service.salvarQuizz(qnt, assunto)
-        #return [quiz.__dict__ for quiz in quizzes]
+    def CriarQuizz(self, request):
+        listaRespostas = []
+        
+        pergunta = request.get('pergunta')
+        assunto = request.get('assunto')
+        respostas = request.get('respostas')
+
+        for item in respostas:
+            resposta = item.get('resposta')
+            correta = item.get('correta')
+            listaRespostas.append((resposta, correta))
+
+        self.Service.salvarQuizz(pergunta, assunto, listaRespostas)

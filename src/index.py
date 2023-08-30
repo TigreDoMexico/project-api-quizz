@@ -22,11 +22,10 @@ def postQuizz():
 
     try:
         result = schema.load(request_data)
+        controller.CriarQuizz(result)
     except ValidationError as err:
-        # Return a nice message if validation fails
         return jsonify(err.messages), 400
 
-    print(result)
     return 'OK', 200
 
 if __name__ == '__main__':
