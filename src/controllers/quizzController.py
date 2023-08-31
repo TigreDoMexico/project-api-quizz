@@ -1,10 +1,26 @@
-from src.models.answer import Answer
-from src.models.quizz import Quizz
+from src.services import QuizzService
 
-def obterQuizz():
-    answer1 = Answer('Elisabeth', True)
-    answer2 = Answer('Martha', False)
-    answer3 = Answer('Mary Jane', False)
+
+class QuizzController:
+    def __init__(self, service = None):
+        self.Service = service if service else QuizzService()
+        
+    def ObterQuizzes(self, quantidade = None, assunto = None):
+        qnt = int(quantidade) if quantidade else 10
     
-    quizz = Quizz('Quem foi a rainha da Inglaterra', [answer1, answer2, answer3])
-    return quizz
+        quizzes = self.Service.obterQuizzes(qnt, assunto)
+        return [quiz.__dict__ for quiz in quizzes]
+    
+    def CriarQuizz(self, request):
+        listaRespostas = []
+        
+        pergunta = request.get('pergunta')
+        assunto = request.get('assunto')
+        respostas = request.get('respostas')
+
+        for item in respostas:
+            resposta = item.get('resposta')
+            correta = item.get('correta')
+            listaRespostas.append((resposta, correta))
+
+        self.Service.salvarQuizz(pergunta, assunto, listaRespostas)
