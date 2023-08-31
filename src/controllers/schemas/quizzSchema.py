@@ -7,5 +7,5 @@ class AnswerSchema(Schema):
 
 class QuizzSchema(Schema):
     pergunta = fields.String(required=True)
-    assunto = fields.String(required=True)
+    assunto = fields.String()
     respostas = fields.List(fields.Nested(AnswerSchema))

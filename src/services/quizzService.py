@@ -13,13 +13,19 @@ class QuizzService:
             
         return elementos_com_assunto[:quantidade]
 
-    def salvarQuizz(self, pergunta: str, assunto: str, respostas: list[tuple[str, bool]]) -> bool:
+    def salvarQuizz(self, pergunta: str, assunto: str | None, respostas: list[tuple[str, bool]]) -> bool:
         lista_answers = []
         
         for resposta in respostas:
             lista_answers.append(Answer(resposta[0], resposta[1]))
 
-        self.lista_quizzes.append(Quizz(pergunta, lista_answers, assunto))
+        total_respostas_certas = sum(answer.Correto for answer in lista_answers)
+
+        if(total_respostas_certas == 1):
+            self.lista_quizzes.append(Quizz(pergunta, lista_answers, assunto))
+        else:
+            return False
+
         return True
 
     def obterQuizzPorId(self, id) -> Quizz:

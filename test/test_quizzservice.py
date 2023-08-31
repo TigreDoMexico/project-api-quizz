@@ -40,6 +40,50 @@ class QuizzServiceTest(TestCase):
         
         self.assertIsNotNone(retorno)
         self.assertEqual(len(retorno), 0)
+
+    def test_Dado_UmQuizzParaCriar_Quando_SalvarQuizz_ComInformacoesCorretas_Deve_RetornarTrue_E_SalvarNaLista(self):
+        pergunta = 'XPTO?'
+        assunto = 'ABCD'
+        respostas = [('Resposta 1', True), ('Resposta 2', False), ('Resposta 3', False)]
+        
+        service = QuizzService()
+        retorno = service.salvarQuizz(pergunta, assunto, respostas)
+        
+        self.assertTrue(retorno)
+        self.assertEqual(len(service.lista_quizzes), 1)
+
+    def test_Dado_UmQuizzParaCriar_Quando_SalvarQuizz_ComDuasRepostasCertas_Deve_RetornarFalse_E_NaoSalvarNaLista(self):
+        pergunta = 'XPTO?'
+        assunto = 'ABCD'
+        respostas = [('Resposta 1', True), ('Resposta 2', True), ('Resposta 3', False)]
+        
+        service = QuizzService()
+        retorno = service.salvarQuizz(pergunta, assunto, respostas)
+        
+        self.assertFalse(retorno)
+        self.assertEqual(len(service.lista_quizzes), 0)
+
+    def test_Dado_UmQuizzParaCriar_Quando_SalvarQuizz_SemRespostas_Deve_RetornarFalse_E_NaoSalvarNaLista(self):
+        pergunta = 'XPTO?'
+        assunto = 'ABCD'
+        respostas = []
+        
+        service = QuizzService()
+        retorno = service.salvarQuizz(pergunta, assunto, respostas)
+        
+        self.assertFalse(retorno)
+        self.assertEqual(len(service.lista_quizzes), 0)
+    
+    def test_Dado_UmQuizzParaCriar_Quando_SalvarQuizz_SemRespostas_Deve_RetornarTrue_E_SalvarQuizzComAssuntoDiversos(self):
+        pergunta = 'XPTO?'
+        assunto = None
+        respostas = [('Resposta 1', True), ('Resposta 2', False), ('Resposta 3', False)]
+        
+        service = QuizzService()
+        retorno = service.salvarQuizz(pergunta, assunto, respostas)
+        
+        self.assertTrue(retorno)
+        self.assertEqual(service.lista_quizzes[0].Assunto, 'diversos')
         
     def _criarListaQuizzes(self, quantidade = 10, assunto = None):
         repositorio = []
