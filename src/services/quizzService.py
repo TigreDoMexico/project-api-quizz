@@ -1,8 +1,10 @@
+from src.data import QuizzRepository
 from src.models import Quizz, Answer
 
 
 class QuizzService:
     def __init__(self, quizzes = None) -> None:
+        self.repositorio = QuizzRepository()
         self.lista_quizzes = quizzes if quizzes else []
     
     def obterQuizzes(self, quantidade:int = 10, assunto:str = None) -> list[Quizz]:
@@ -22,7 +24,10 @@ class QuizzService:
         total_respostas_certas = sum(answer.Correto for answer in lista_answers)
 
         if(total_respostas_certas == 1):
+            entidade = Quizz(pergunta, lista_answers, assunto)
+            
             self.lista_quizzes.append(Quizz(pergunta, lista_answers, assunto))
+            self.repositorio.Salvar(entidade.to_dict())
         else:
             return False
 

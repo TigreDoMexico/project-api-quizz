@@ -17,3 +17,11 @@ class Quizz:
         self.Assunto = assunto if assunto else 'diversos'
         
         Quizz.static_id += 1
+    
+    def to_dict(self):
+        dict = self.__dict__
+        respostas = [resp.__dict__ for resp in self.Respostas]
+        
+        dict['Respostas'] = respostas
+        
+        return dict
