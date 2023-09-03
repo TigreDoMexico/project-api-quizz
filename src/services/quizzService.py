@@ -5,7 +5,7 @@ class QuizzService:
     def __init__(self, quizzes = None) -> None:
         self.lista_quizzes = quizzes if quizzes else []
     
-    def obterQuizzes(self, quantidade:int = 10, assunto:str | None = None) -> list[Quizz]:
+    def obterQuizzes(self, quantidade:int = 10, assunto:str = None) -> list[Quizz]:
         elementos_com_assunto = self.lista_quizzes
         
         if(assunto):
@@ -13,7 +13,7 @@ class QuizzService:
             
         return elementos_com_assunto[:quantidade]
 
-    def salvarQuizz(self, pergunta: str, assunto: str | None, respostas: list[tuple[str, bool]]) -> bool:
+    def salvarQuizz(self, pergunta: str, assunto: str, respostas: list[tuple[str, bool]]) -> bool:
         lista_answers = []
         
         for resposta in respostas:

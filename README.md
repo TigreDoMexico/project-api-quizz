@@ -2,7 +2,7 @@
 API para gerar quizzes randômicos de vários assuntos
 
 ## Dependências
-`pip install flask marshmallow`
+`pip install flask marshmallow python-dotenv`
 
 ## Docker
 `docker-compose up -d`
