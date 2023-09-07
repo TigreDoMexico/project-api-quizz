@@ -2,6 +2,7 @@ import pymongo
 from src.configurations.mongoConfiguration import MongoConfiguration
 
 from src.data import Repository
+from src.data.mapper.quizzMapper import map_to_dictionary, map_to_entity
 from src.models.quizz import Quizz
 
 
@@ -12,7 +13,7 @@ class QuizzRepository(Repository):
         client = pymongo.MongoClient(configs['connstring'])
         self.db = client[configs['database']]
     
-    def ObterTodos(self, qnt = 10, filter = None):
+    def ObterTodos(self, qnt = 10, filter = None) -> list[Quizz]:
         collection = self.db['Quizz']
         result = []
         quizzList = []
@@ -20,13 +21,13 @@ class QuizzRepository(Repository):
         if filter:
             result = collection.find({ "Assunto": filter }).limit(qnt)
         else:
-            result = collection.limit(qnt)
+            result = collection.find().limit(qnt)
 
         for item in result:
-            quizzList.append(Quizz.to_class(item))
+            quizzList.append(map_to_entity(item))
         
         return quizzList
         
-    def Salvar(self, entidade):
+    def Salvar(self, entidade: Quizz):
         collection = self.db['Quizz']
-        collection.insert_one(entidade)
+        collection.insert_one(map_to_dictionary(entidade))
