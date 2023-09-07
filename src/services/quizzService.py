@@ -8,12 +8,7 @@ class QuizzService:
         self.lista_quizzes = quizzes if quizzes else []
     
     def obterQuizzes(self, quantidade:int = 10, assunto:str = None) -> list[Quizz]:
-        elementos_com_assunto = self.lista_quizzes
-        
-        if(assunto):
-            elementos_com_assunto = [quizz for quizz in self.lista_quizzes if quizz.Assunto == assunto]
-            
-        return elementos_com_assunto[:quantidade]
+        return self.repositorio.ObterTodos(quantidade, assunto)
 
     def salvarQuizz(self, pergunta: str, assunto: str, respostas: list[tuple[str, bool]]) -> bool:
         lista_answers = []

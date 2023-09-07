@@ -25,3 +25,16 @@ class Quizz:
         dict['Respostas'] = respostas
         
         return dict
+    
+    @staticmethod
+    def to_class(dictionary):
+        respostas = []
+
+        pergunta = dictionary.get('Pergunta')
+        assunto = dictionary.get('Assunto')
+        
+        for item in dictionary.get('Respostas'):
+            resposta = Answer.to_class(item)
+            respostas.append(resposta)
+
+        return Quizz(pergunta, respostas, assunto)
