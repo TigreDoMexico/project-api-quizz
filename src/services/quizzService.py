@@ -1,33 +1,23 @@
+from src.data import QuizzRepository
 from src.models import Quizz, Answer
 
 
 class QuizzService:
-    def __init__(self, quizzes = None) -> None:
-        self.lista_quizzes = quizzes if quizzes else []
+    def __init__(self, repository = None) -> None:
+        self.repositorio = repository if repository else QuizzRepository()
     
-    def obterQuizzes(self, quantidade:int = 10, assunto:str | None = None) -> list[Quizz]:
-        elementos_com_assunto = self.lista_quizzes
-        
-        if(assunto):
-            elementos_com_assunto = [quizz for quizz in self.lista_quizzes if quizz.Assunto == assunto]
-            
-        return elementos_com_assunto[:quantidade]
+    def obterQuizzes(self, quantidade:int = 10, assunto:str = None) -> list[Quizz]:
+        return self.repositorio.ObterTodos(quantidade, assunto)
 
-    def salvarQuizz(self, pergunta: str, assunto: str | None, respostas: list[tuple[str, bool]]) -> bool:
-        lista_answers = []
-        
-        for resposta in respostas:
-            lista_answers.append(Answer(resposta[0], resposta[1]))
-
+    def salvarQuizz(self, pergunta: str, assunto: str, respostas: list[tuple[str, bool]]) -> bool:
+        lista_answers = [Answer(resposta[0], resposta[1]) for resposta in respostas]
         total_respostas_certas = sum(answer.Correto for answer in lista_answers)
 
         if(total_respostas_certas == 1):
-            self.lista_quizzes.append(Quizz(pergunta, lista_answers, assunto))
+            entidade = Quizz(pergunta, lista_answers, assunto)
+            self.repositorio.Salvar(entidade)
         else:
             return False
 
         return True
-
-    def obterQuizzPorId(self, id) -> Quizz:
-        return next((x for x in self.lista_quizzes if x.Id == id), None)
         

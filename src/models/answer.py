@@ -8,3 +8,4 @@ class Answer:
     def __init__(self, texto, correto):
         self.Texto = texto
         self.Correto = correto
+        
