@@ -10,16 +10,9 @@ def map_to_dictionary(quizz: Quizz):
     return dict
 
 def map_to_entity(dictionary: dict):
-    respostas = []
-
     pergunta = dictionary.get('Pergunta')
     assunto = dictionary.get('Assunto')
-        
-    for item in dictionary.get('Respostas'):
-        texto = item.get('Texto')
-        correto = item.get('Correto')
-
-        resposta = Answer(texto, correto)
-        respostas.append(resposta)
-
+    
+    respostas = [Answer(item.get('Texto'), item.get('Correto')) for item in dictionary.get('Respostas')]    
+    
     return Quizz(pergunta, respostas, assunto)
