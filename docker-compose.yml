@@ -4,6 +4,7 @@ services:
   mongo:
     image: mongo
     restart: always
+    container_name: mongodb
     ports:
       - "27017:27017"
     environment:
@@ -15,6 +16,7 @@ services:
   mongo-express:
     image: mongo-express
     restart: always
+    container_name: mongoexpress
     ports:
       - 8081:8081
     environment:
@@ -27,6 +29,7 @@ services:
 
   webapp:
     image: quizz-api
+    container_name: api
     ports:
       - "5000:5000"
     networks:
