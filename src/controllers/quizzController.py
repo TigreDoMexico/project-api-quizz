@@ -5,7 +5,7 @@ class QuizzController:
     def __init__(self, service = None):
         self.Service = service if service else QuizzService()
         
-    def ObterQuizzes(self, quantidade = None, assunto = None):
+    def ObterQuizzes(self, quantidade = None, assunto: str | None = None):
         qnt = int(quantidade) if quantidade else 10
     
         quizzes = self.Service.obterQuizzes(qnt, assunto)

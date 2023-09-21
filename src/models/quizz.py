@@ -1,10 +1,9 @@
 from dataclasses import dataclass
-from src.models.answer import Answer
 
 @dataclass
 class Quizz:
     Pergunta: str
-    Respostas: list[Answer]
+    Respostas: list
     Assunto: str
     
     def __init__(self, pergunta, respostas, assunto = None):

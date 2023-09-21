@@ -11,9 +11,12 @@ class QuizzRepository(Repository):
         configs = MongoConfiguration.GetAll('development.env')
         
         client = pymongo.MongoClient(configs['connstring'])
-        self.db = client[configs['database']]
+        dbName = configs['database']
+
+        if dbName is not None:
+            self.db = client[dbName]
     
-    def ObterTodos(self, qnt = 10, filter = None) -> list[Quizz]:
+    def ObterTodos(self, qnt = 10, filter = None):
         collection = self.db['Quizz']
         result = []
         quizzList = []
