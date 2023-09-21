@@ -16,7 +16,7 @@ class QuizzModelTest(TestCase):
         
         self.assertEqual(novoQuizz.Assunto, assunto)
         
-    def _criarRespostasPraPergunta(self) -> list[Answer]:
+    def _criarRespostasPraPergunta(self):
         return [Answer('RESPOSTA1', True)]
 
 if __name__ == '__main__':

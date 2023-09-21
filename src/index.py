@@ -21,8 +21,9 @@ def postQuizz():
     schema = QuizzSchema()
 
     try:
-        result = schema.load(request_data)
-        controller.CriarQuizz(result)
+        if request_data is not None:
+            result = schema.load(request_data)
+            controller.CriarQuizz(result)
     except ValidationError as err:
         return jsonify(err.messages), 400
 
