@@ -9,6 +9,8 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: root
+    networks:
+      - quizz-app-network
   
   mongo-express:
     image: mongo-express
@@ -20,3 +22,15 @@ services:
       ME_CONFIG_MONGODB_ADMINPASSWORD: root
       ME_CONFIG_MONGODB_SERVER: mongo
       ME_CONFIG_MONGODB_PORT: 27017
+    networks:
+      - quizz-app-network
+
+  webapp:
+    image: quizz-api
+    ports:
+      - "5000:5000"
+    networks:
+      - quizz-app-network
+
+networks:
+  quizz-app-network:
