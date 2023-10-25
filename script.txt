@@ -1,0 +1,5 @@
+-- Table created
+aws dynamodb create-table --table-name Quizz --attribute-definitions AttributeName=Id, AttributeType=S --key-schema AttributeName=Id, KeyType=HASH --provisioned-throughput ReadCapacityUnits=5,WriteCapacityUnits=5
+
+-- Include example
+aws dynamodb put-item --table-name Quizz --item '{"Id":{"S":"teste"},"Pergunta":{"S":"Qual é a capital do Brasil?"},"Assunto":{"S":"Geografia"},"Respostas":{"L":[{"M":{"Texto":{"S":"Brasília"},"Correta":{"BOOL":true}}},{"M":{"Texto":{"S":"Rio de Janeiro"},"Correta":{"BOOL":false}}},{"M":{"Texto":{"S":"São Paulo"},"Correta":{"BOOL":false}}}]}}'

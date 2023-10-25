@@ -5,7 +5,7 @@ class Quizz:
     Pergunta: str
     Respostas: list
     Assunto: str
-    
+
     def __init__(self, pergunta, respostas, assunto = None):
         self.Pergunta = pergunta
         self.Respostas = respostas

@@ -9,13 +9,13 @@ from src.models.quizz import Quizz
 class QuizzRepository(Repository):
     def __init__(self):
         configs = MongoConfiguration.GetAll('development.env')
-        
+
         client = pymongo.MongoClient(configs['connstring'])
         dbName = configs['database']
 
         if dbName is not None:
             self.db = client[dbName]
-    
+
     def ObterTodos(self, qnt = 10, filter = None):
         collection = self.db['Quizz']
         result = []
@@ -28,9 +28,9 @@ class QuizzRepository(Repository):
 
         for item in result:
             quizzList.append(map_to_entity(item))
-        
+
         return quizzList
-        
+
     def Salvar(self, entidade: Quizz):
         collection = self.db['Quizz']
         collection.insert_one(map_to_dictionary(entidade))
