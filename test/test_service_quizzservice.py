@@ -1,6 +1,6 @@
 from unittest import TestCase
 from unittest.mock import MagicMock
-from src.data import QuizzRepository
+from src.data import QuizzMongoRepository
 
 from src.services import QuizzService
 from src.models import Quizz, Answer
@@ -95,13 +95,13 @@ class QuizzServiceTest(TestCase):
         repositorio.Salvar.assert_called_once_with(Quizz(pergunta, respostasSalvas, 'diversos'))
     
     def _mockRepositoryComSalvar(self, retorno = True):
-        repository = QuizzRepository()
+        repository = QuizzMongoRepository()
         repository.Salvar = MagicMock(return_value = retorno)
 
         return repository
     
     def _mockRepositoryComObterTodos(self, retorno = []):
-        repository = QuizzRepository()
+        repository = QuizzMongoRepository()
         repository.ObterTodos = MagicMock(return_value = retorno)
 
         return repository

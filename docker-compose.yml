@@ -1,4 +1,4 @@
-version: '1.0'
+version: '2.0'
 
 services:
   mongo:
@@ -27,11 +27,24 @@ services:
     networks:
       - quizz-app-network
 
+  dynamodb:
+    command: "-jar DynamoDBLocal.jar -sharedDb -dbPath ./data"
+    image: "amazon/dynamodb-local:latest"
+    container_name: dynamodb-local
+    ports:
+      - "8000:8000"
+    volumes:
+      - "./docker/dynamodb:/home/dynamodblocal/data"
+    working_dir: /home/dynamodblocal
+
   webapp:
     image: quizz-api
+    depends_on:
+      - dynamodb
+      - mongo
     container_name: api
     ports:
-      - "5000:5000"
+      - "5001:5000"
     networks:
       - quizz-app-network
 

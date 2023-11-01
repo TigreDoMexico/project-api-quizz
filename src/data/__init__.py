@@ -1,2 +1,2 @@
 from src.data.repository import *
-from src.data.quizzRepository import *
+from src.data.quizzMongoRepository import *

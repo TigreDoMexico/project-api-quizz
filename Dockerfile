@@ -1,6 +1,6 @@
 FROM python:3.8
 WORKDIR /app
-RUN pip install flask marshmallow pymongo python-dotenv
+RUN pip install flask marshmallow pymongo python-dotenv boto3
 COPY . .
 EXPOSE 5000
 ENV FLASK_APP=src.index.py

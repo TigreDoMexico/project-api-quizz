@@ -1,10 +1,10 @@
-from src.data import QuizzRepository
+from src.data import QuizzMongoRepository
 from src.models import Quizz, Answer
 
 
 class QuizzService:
     def __init__(self, repository = None) -> None:
-        self.repositorio = repository if repository else QuizzRepository()
+        self.repositorio = repository if repository else QuizzMongoRepository()
     
     def obterQuizzes(self, quantidade:int = 10, assunto = None):
         return self.repositorio.ObterTodos(quantidade, assunto)

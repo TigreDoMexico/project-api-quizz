@@ -6,7 +6,7 @@ from src.data.mapper.quizzMapper import map_to_dictionary, map_to_entity
 from src.models.quizz import Quizz
 
 
-class QuizzRepository(Repository):
+class QuizzMongoRepository(Repository):
     def __init__(self):
         configs = MongoConfiguration.GetAll('development.env')
 
