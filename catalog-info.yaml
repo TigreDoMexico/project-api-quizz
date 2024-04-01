@@ -1,10 +1,14 @@
 apiVersion: backstage.io/v1alpha1
-kind: Component
+kind: API
 metadata:
   name: project-api-quizz
+  description: API to create Quizzes
+  tags:
+    - python
+    - quizz
   annotations:
     github.com/project-slug: TigreDoMexico/project-api-quizz
 spec:
-  type: other
-  lifecycle: unknown
+  type: project-api
+  lifecycle: production
   owner: TigreDoMexico
