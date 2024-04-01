@@ -12,3 +12,4 @@ spec:
   type: project-api
   lifecycle: production
   owner: TigreDoMexico
+  definition: https://localhost:5000/swagger
